@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class CountingDaoFactory {
     @Bean
     public UserDao userDao() {
-        return new UserDao(ConnectionMaker());
+        return new UserDao();
+//        return new UserDao(ConnectionMaker());
         // 모든 DAO는 여전히 connectionMaker()에서 만들어지는 오브젝트를 DI 받는다.
     }
     @Bean
