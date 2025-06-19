@@ -1,14 +1,8 @@
-package springbook.user.dao;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import springbook.user.domain.User;
+//package springbook.user.dao;
 
 // 클라이언트 역할 UserDaoTest
-public class UserDaoTest {
-    public static void main(String[] args) throws Exception {
+//public class UserDaoTest {
+//    public static void main(String[] args) throws Exception {
 //        // UserDao가 사용할 ConnectionMaker 구현 클래스를 결정하고, 오브젝트를 만든다.
 //        ConnectionMaker connectionMaker = new DConnectionMaker();
 //
@@ -55,5 +49,5 @@ public class UserDaoTest {
 //        } else {
 //            System.out.println("테스트 성공");
 //        }
-    }
-}
+//    }
+//}
