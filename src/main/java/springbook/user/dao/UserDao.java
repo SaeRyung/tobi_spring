@@ -70,27 +70,57 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException {
-        Connection c = dataSource.getConnection();
-
-        PreparedStatement ps = c.prepareStatement("delete from users");
-
-        ps.executeUpdate();
-        ps.close();
-        c.close();
+        Connection c = null;
+        PreparedStatement ps = null;
+        try {
+            c = dataSource.getConnection();
+            ps = c.prepareStatement("delete from users");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if(ps != null){
+                try {
+                ps.close();
+                } catch (SQLException e) {}
+            }
+            if(c != null){
+                try {
+                    c.close();
+                } catch (SQLException e) {}
+            }
+        }
     }
 
     public int getCount() throws SQLException {
-        Connection c = dataSource.getConnection();
-        PreparedStatement ps = c.prepareStatement("select count(*) from users");
-        ResultSet rs = ps.executeQuery();
-        rs.next();
-        int count = rs.getInt(1);
-
-        rs.close();
-        ps.close();
-        c.close();
-
-        return count;
+        Connection c = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try{
+            c = dataSource.getConnection();
+            ps = c.prepareStatement("select count(*) from users");
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {}
+            }
+            if(ps != null){
+                try {
+                    ps.close();
+                } catch (SQLException e) {}
+            }
+            if(c != null){
+                try {
+                    c.close();
+                } catch (SQLException e) {}
+            }
+        }
     }
 
 //    // UserDao 자신의 관심사이자 책임인 사용자 데이터 액세스 작업을 위해 SQL 생성, 실행하는 데만 집중 한다.
